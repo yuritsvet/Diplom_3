@@ -39,12 +39,12 @@ public class HomePage {
     public By textExitButtonTitle = By.xpath("//*[text()='Выход']"); //Кнопка Выход
     private final By bunsButtonSection = By.xpath(".//span[text()='Булки']"); //Кнопка раздела Булки
     private final By saucesButtonSection = By.xpath(".//span[text()='Соусы']"); //Кнопка раздела Соусы
-    private final By fillingsButtonSection = By.xpath(".//span[text()='Булки']"); //Кнопка раздела Начинки
+    private final By fillingsButtonSection = By.xpath(".//span[text()='Начинки']"); //Кнопка раздела Начинки
     public By textCreateOrder = By.xpath("//*[text()='Оформить заказ']");
-    private By resultSection = By.xpath("//div[contains(@class,'tab_tab_type_current__2BEPc')]//span"); //выбранная секция
+    private By resultSection = By.xpath("//div[contains(@class,'tab_tab__1SPyG tab_tab_type_current__2BEPc')]"); //выбранная секция
 
     public void standBy(By element) {
-        (new WebDriverWait(driver, Duration.ofSeconds(3)))
+        (new WebDriverWait(driver, Duration.ofSeconds(5)))
                 .until(ExpectedConditions.elementToBeClickable(element));
     }
     public void clickPersonalOfficeButton() {
@@ -114,21 +114,21 @@ public class HomePage {
     }
     public void clickBunsButton() {
         driver.findElement(bunsButtonSection);
-        new WebDriverWait(driver, Duration.ofSeconds(1));
+        new WebDriverWait(driver, Duration.ofSeconds(3));
     }
     public void clickSaucesButton() {
         driver.findElement(saucesButtonSection);
-        new WebDriverWait(driver, Duration.ofSeconds(1));
+        new WebDriverWait(driver, Duration.ofSeconds(3));
     }
     public void clickFillingsButton() {
         driver.findElement(fillingsButtonSection);
-        new WebDriverWait(driver, Duration.ofSeconds(1));
+        new WebDriverWait(driver, Duration.ofSeconds(3));
     }
 
     public String getTextCreateOrder() {
         return driver.findElement(textCreateOrder).getText();
     }
-    public By getResultSection() {
+    public By getCurrentSection() {
         return resultSection;
     }
 }

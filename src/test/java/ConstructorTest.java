@@ -47,32 +47,29 @@ public class ConstructorTest {
     }
 
     @Test
-    @DisplayName("Тест перехода в раздел Булки в конструкторе")
-    public void successEnterToBunsTest() {
-        HomePage homePage = new HomePage(driver);
-        homePage.clickBunsButton();
-        String actualResult = driver.findElement(homePage.getResultSection()).getText();
-        assertEquals("Не корректный результат", expectedTextBuns, actualResult);
-    }
-
-    @Test
     @DisplayName("Тест перехода в раздел Соусы в конструкторе")
     public void successEnterToSaucesTest() {
         HomePage homePage = new HomePage(driver);
         homePage.clickSaucesButton();
-        String actualResult = driver.findElement(homePage.getResultSection()).getText();
+        String actualResult = driver.findElement(homePage.getCurrentSection()).getText();
         assertEquals("Не корректный результат", expectedTextSauces, actualResult);
     }
-
     @Test
     @DisplayName("Тест перехода в раздел Начинки в конструкторе")
     public void successEnterToFillingsTest() {
         HomePage homePage = new HomePage(driver);
         homePage.clickFillingsButton();
-        String actualResult = driver.findElement(homePage.getResultSection()).getText();
+        String actualResult = driver.findElement(homePage.getCurrentSection()).getText();
         assertEquals("Не корректный результат", expectedTextFillings, actualResult);
     }
-
+    @Test
+    @DisplayName("Тест перехода в раздел Булки в конструкторе")
+    public void successEnterToBunsTest() {
+        HomePage homePage = new HomePage(driver);
+        homePage.clickBunsButton();
+        String actualResult = driver.findElement(homePage.getCurrentSection()).getText();
+        assertEquals("Не корректный результат", expectedTextBuns, actualResult);
+    }
     @After
     public void teardown() {
         driver.quit();
