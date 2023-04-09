@@ -1,6 +1,7 @@
 import io.qameta.allure.junit4.DisplayName;
 import static org.junit.Assert.assertEquals;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import pages.HomePage;
 
 public class ConstructorTest {
+
     private WebDriver driver;
     private String expectedTextConstructorTitle = "Соберите бургер";
     private String expectedTextBuns = "Булки";
@@ -45,31 +47,27 @@ public class ConstructorTest {
         String actualTextConstructorTitle = homePage.getTextConstructorTitle();
         assertEquals("Не корректный результат", expectedTextConstructorTitle, actualTextConstructorTitle);
     }
-
     @Test
-    @DisplayName("Тест перехода в раздел Соусы в конструкторе")
-    public void successEnterToSaucesTest() {
-        HomePage homePage = new HomePage(driver);
-        homePage.clickSaucesButton();
-        String actualResult = driver.findElement(homePage.getCurrentSection()).getText();
-        assertEquals("Не корректный результат", expectedTextSauces, actualResult);
-    }
-    @Test
-    @DisplayName("Тест перехода в раздел Начинки в конструкторе")
-    public void successEnterToFillingsTest() {
-        HomePage homePage = new HomePage(driver);
-        homePage.clickFillingsButton();
-        String actualResult = driver.findElement(homePage.getCurrentSection()).getText();
-        assertEquals("Не корректный результат", expectedTextFillings, actualResult);
-    }
-    @Test
-    @DisplayName("Тест перехода в раздел Булки в конструкторе")
+    @DisplayName("Перелючение в раздел Булки")
     public void successEnterToBunsTest() {
         HomePage homePage = new HomePage(driver);
-        homePage.clickBunsButton();
-        String actualResult = driver.findElement(homePage.getCurrentSection()).getText();
-        assertEquals("Не корректный результат", expectedTextBuns, actualResult);
+        Assert.assertEquals("tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect", homePage.getBunClass());
     }
+    @Test
+    @DisplayName("Переключение в раздел Соусы")
+    public void successEnterToSauceTest() {
+        HomePage homePage = new HomePage(driver);
+        homePage.btnSauceClick();
+        Assert.assertEquals("tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect", homePage.getSauceClass());
+    }
+    @Test
+    @DisplayName("Переключение в раздел Ингредиенты")
+    public void successEnterToFillingsTest() {
+        HomePage homePage = new HomePage(driver);
+        homePage.btnFillingsClick();
+        Assert.assertEquals("tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect", homePage.getFillingsClass());
+    }
+
     @After
     public void teardown() {
         driver.quit();

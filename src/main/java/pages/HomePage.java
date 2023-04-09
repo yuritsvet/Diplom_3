@@ -37,11 +37,14 @@ public class HomePage {
     public By enterButtonFormLogin = By.xpath("//*[@id=\"root\"]/div/main/div/form/button"); //Кнопка Войти внизу формы Вход на странице логина
     public By exitButton = By.xpath("//*[@id=\"root\"]/div/main/div/nav/ul/li[3]/button"); //Кнопка Выход в разделе Личный кабинет
     public By textExitButtonTitle = By.xpath("//*[text()='Выход']"); //Кнопка Выход
-    private final By bunsButtonSection = By.xpath(".//span[text()='Булки']"); //Кнопка раздела Булки
-    private final By saucesButtonSection = By.xpath(".//span[text()='Соусы']"); //Кнопка раздела Соусы
-    private final By fillingsButtonSection = By.xpath(".//span[text()='Начинки']"); //Кнопка раздела Начинки
     public By textCreateOrder = By.xpath("//*[text()='Оформить заказ']");
-    private By resultSection = By.xpath("//div[contains(@class,'tab_tab__1SPyG tab_tab_type_current__2BEPc')]"); //выбранная секция
+
+    private final By btnBun = By.xpath(".//span[text()='Булки']");
+    private final By btnBunClass = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[1]");
+    private final By btnSouse = By.xpath(".//span[text()='Соусы']");
+    private final By btnSouseClass = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[2]");
+    private final By btnIngredient = By.xpath(".//span[text()='Начинки']");
+    private final By btnIngredientClass = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[3]");
 
     public void standBy(By element) {
         (new WebDriverWait(driver, Duration.ofSeconds(5)))
@@ -112,23 +115,25 @@ public class HomePage {
         driver.findElement(exitButton).click();
         standBy(textEnterFormTitle);
     }
-    public void clickBunsButton() {
-        driver.findElement(bunsButtonSection);
-        new WebDriverWait(driver, Duration.ofSeconds(3));
-    }
-    public void clickSaucesButton() {
-        driver.findElement(saucesButtonSection);
-        new WebDriverWait(driver, Duration.ofSeconds(3));
-    }
-    public void clickFillingsButton() {
-        driver.findElement(fillingsButtonSection);
-        new WebDriverWait(driver, Duration.ofSeconds(3));
-    }
-
     public String getTextCreateOrder() {
         return driver.findElement(textCreateOrder).getText();
     }
-    public By getCurrentSection() {
-        return resultSection;
+    public void btnBunClick() {
+        driver.findElement(btnBun).click();
+    }
+    public void btnSauceClick() {
+        driver.findElement(btnSouse).click();
+    }
+    public void btnFillingsClick() {
+        driver.findElement(btnIngredient).click();
+    }
+    public String getSauceClass() {
+        return driver.findElement(btnSouseClass).getAttribute("class");
+    }
+    public String getBunClass() {
+        return driver.findElement(btnBunClass).getAttribute("class");
+    }
+    public String getFillingsClass() {
+        return driver.findElement(btnIngredientClass).getAttribute("class");
     }
 }
